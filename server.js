@@ -41,3 +41,9 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
     console.log("MORA Server running on port 3000");
 });
+
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send(err.message);
+});
