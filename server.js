@@ -27,6 +27,11 @@ app.post("/upload", upload.single("image"), (req, res) => {
     });
 });
 
+
+app.get("/", (req, res) => {
+  res.send("MORA Server is running");
+});
+
 app.listen(3000, () => {
     console.log("MORA Server running on port 3000");
 });
