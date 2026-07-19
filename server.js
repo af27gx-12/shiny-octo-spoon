@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post("/upload", upload.single("image"), (req, res) => {
-    const url = "http://192.168.31.177:3000/uploads/" + req.file.filename;
+    const url = req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
 
     res.json({
         success: true,
