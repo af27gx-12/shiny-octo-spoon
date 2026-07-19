@@ -1,8 +1,14 @@
+const fs = require("fs");
+const path = require("path");
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
 
 const app = express();
+
+if (!fs.existsSync('uploads')) {
+  fs.mkdirSync('uploads');
+}
 
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
