@@ -5,6 +5,7 @@ const multer = require("multer");
 const cors = require("cors");
 
 const app = express();
+app.set("trust proxy", true);
 
 if (!fs.existsSync('uploads')) {
   fs.mkdirSync('uploads');
@@ -25,7 +26,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post("/upload", upload.single("image"), (req, res) => {
-    const url = "https://" + req.get("host") + "/uploads/" + req.file.filename;
+    const url = req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
 
     res.json({
         success: true,
